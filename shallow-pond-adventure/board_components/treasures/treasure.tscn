@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw5hbuexn6kdd"]
+
+[ext_resource type="Script" path="res://board_components/treasures/treasure.gd" id="1_w5xtq"]
+
+[node name="Treasure" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_w5xtq")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcxao8rnyyoma"]
+
+[ext_resource type="PackedScene" uid="uid://bw5hbuexn6kdd" path="res://board_components/treasures/treasure.tscn" id="1_hjaiv"]
+[ext_resource type="Texture2D" uid="uid://bpjjuoy5751tm" path="res://resources/icons/icon.svg" id="2_5kqsc"]
+[ext_resource type="PackedScene" uid="uid://cfi16dtnlpc41" path="res://board_components/treasures/item_effects/add_health_effect.tscn" id="3_fupcl"]
+
+[node name="Treasure" instance=ExtResource("1_hjaiv")]
+value = 10
+visible_name = "Battery"
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_5kqsc")
+
+[node name="AddHealthEffect" parent="." index="1" instance=ExtResource("3_fupcl")]
+health_to_give = 1

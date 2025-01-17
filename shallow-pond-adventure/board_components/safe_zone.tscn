@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvuw7nyt8ynlr"]
+
+[ext_resource type="Script" path="res://board_components/safe_zone.gd" id="1_n4m84"]
+[ext_resource type="Texture2D" uid="uid://bpjjuoy5751tm" path="res://resources/icons/icon.svg" id="1_nir2s"]
+
+[node name="SafeZone" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_n4m84")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nir2s")

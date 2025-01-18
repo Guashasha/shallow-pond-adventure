@@ -15,6 +15,19 @@ run/main_scene="res://ui/login.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://resources/icons/icon.svg"
 
+[autoload]
+
+Logger="*res://utilities/logger.gd"
+
+[debug]
+
+file_logging/enable_file_logging=true
+
+[display]
+
+window/size/mode=2
+window/size/borderless=true
+
 [rendering]
 
 renderer/rendering_method="mobile"

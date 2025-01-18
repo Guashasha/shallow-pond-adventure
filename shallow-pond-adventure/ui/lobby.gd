@@ -6,7 +6,7 @@ var port = 8989
 var ip = "127.0.0.1"
 
 var peer
-var connected_players = {}
+var connected_players: Dictionary = {}
 
 func _ready():
     multiplayer.peer_connected.connect(connect_peer)
@@ -15,10 +15,14 @@ func _ready():
     multiplayer.connection_failed.connect(handle_failed_connection)
 
 func connect_peer(id):
-    pass
+    if !connected_players.has(id):
+        #connected_players[id] = 
+        Logger.info("peer with id " + id + " connected.")
 
 func disconnect_peer(id):
-    pass
+    if connected_players.has(id):
+        connected_players.erase(id)
+        Logger.info("peer with id " + id + " disconnected.")
 
 func connect_to_server():
     pass
@@ -29,11 +33,11 @@ func handle_failed_connection():
 func _on_create_game_button_pressed():
     peer = ENetMultiplayerPeer.new()
 
-    var err = peer.create_server(port, MAX_PLAYERS)
+    var err: int = peer.create_server(port, MAX_PLAYERS)
     if err != OK:
-        # loggear error
-        print("error al crear server: ", err)
+        Logger.error("Error occurred while creating a server: ", err)
         return
     
     peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
     multiplayer.set_multiplayer_peer(peer)
+    Logger.info("Server created successfully")

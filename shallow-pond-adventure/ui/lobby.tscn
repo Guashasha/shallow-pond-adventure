@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b6vrhnvd3ivx0"]
 
-[ext_resource type="Script" path="res://ui/lobby.gd" id="1_tpvck"]
+[ext_resource type="Script" uid="uid://c7etspxrueavw" path="res://ui/lobby.gd" id="1_tpvck"]
 [ext_resource type="Texture2D" uid="uid://dqqkwalgykmdn" path="res://resources/icons/back.svg" id="2_xdjut"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b02h3"]
@@ -62,7 +62,7 @@ layout_mode = 2
 text = "Name:"
 horizontal_alignment = 1
 
-[node name="NameTexteBox" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="NameTextBox" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -113,3 +113,4 @@ custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/StartServerButton" to="." method="_on_create_game_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/StopServerButton" to="." method="_on_stop_server_button_pressed"]

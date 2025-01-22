@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="shallow-pond-adventure"
-run/main_scene="uid://b6vrhnvd3ivx0"
+run/main_scene="uid://5mtsn1wel5hq"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://resources/icons/icon.svg"
 

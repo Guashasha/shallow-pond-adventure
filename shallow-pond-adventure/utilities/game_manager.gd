@@ -3,7 +3,13 @@ class_name GameManager
 var username = ""
 
 var port = 8989
-var ip = "127.0.0.1"
+var ip = ""
 
-var peer
+var peer = null
 var connected_players: Dictionary = {}
+
+func clear_connection_data():
+	ip = ""
+	username = ""
+	peer.close()
+	connected_players = {}

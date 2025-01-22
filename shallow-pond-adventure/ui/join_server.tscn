@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpqr6asqo3j7r"]
+[gd_scene load_steps=6 format=3 uid="uid://bpqr6asqo3j7r"]
 
 [ext_resource type="Script" uid="uid://c0j7arkqk1uwl" path="res://ui/join_server.gd" id="1_c4lm3"]
 [ext_resource type="Texture2D" uid="uid://dqqkwalgykmdn" path="res://resources/icons/back.svg" id="1_nv0ni"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_58qst"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c4lm3"]
 
@@ -83,11 +85,23 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="ConnectButton" type="Button" parent="MarginContainer/HBoxContainer/MainButtonsContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/MainButtonsContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_58qst")
+
+[node name="ConnectButton" type="Button" parent="MarginContainer/HBoxContainer/MainButtonsContainer/PanelContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Connect to server"
+
+[node name="DisconnectButton" type="Button" parent="MarginContainer/HBoxContainer/MainButtonsContainer/PanelContainer"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+text = "Disconnect"
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/MainButtonsContainer"]
 layout_mode = 2
@@ -114,4 +128,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.05
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/MainButtonsContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MainButtonsContainer/PanelContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MainButtonsContainer/PanelContainer/DisconnectButton" to="." method="_on_disconnect_button_pressed"]

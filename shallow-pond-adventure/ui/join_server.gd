@@ -25,12 +25,14 @@ func handle_failed_connection():
     Logger.warn("unable to connect to server")
 
 func _on_connect_button_pressed():
-    game_manager.username = get_node("NameTextBox").text
-    game_manager.ip = get_node("IPTextBox").text
+    game_manager.username = $MarginContainer/HBoxContainer/MainButtonsContainer/NameLabel.text
+    game_manager.ip = $MarginContainer/HBoxContainer/MainButtonsContainer/IPLabel.text
     
     if game_manager.username.is_empty():
+        Logger.info("User left username field empty while trying to join a server")
         return
-    else: if game_manager.ip.is_empty():
+    elif game_manager.ip.is_empty():
+        Logger.info("User left ip field empty while trying to join a server")
         return
     
     game_manager.peer = ENetMultiplayerPeer.new()
@@ -42,3 +44,25 @@ func _on_connect_button_pressed():
     
     game_manager.peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
     multiplayer.set_multiplayer_peer(game_manager.peer)
+    toggle_buttons()
+    Logger.info("Connected to server successfully")
+
+func _on_quit_button_pressed():
+    get_tree().change_scene_to_file("res://ui/main_menu.tscn")
+
+func _on_disconnect_button_pressed():
+    game_manager.peer.close()
+    toggle_buttons()
+
+func toggle_buttons():
+    var button_is_visible = true
+    var button_is_disabled = false
+    
+    if $MarginContainer/HBoxContainer/MainButtonsContainer/PanelContainer/ConnectButton.visible:
+        button_is_visible = false
+        button_is_disabled = true
+    
+    $MarginContainer/HBoxContainer/MainButtonsContainer/PanelContainer/ConnectButton.visible = button_is_visible
+    $MarginContainer/HBoxContainer/MainButtonsContainer/PanelContainer/ConnectButton.disabled = button_is_disabled
+    $MarginContainer/HBoxContainer/MainButtonsContainer/PanelContainer/DisconnectButton.visible = !button_is_visible
+    $MarginContainer/HBoxContainer/MainButtonsContainer/PanelContainer/DisconnectButton.disabled = !button_is_disabled

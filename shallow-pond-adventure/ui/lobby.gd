@@ -16,6 +16,7 @@ func connect_peer(id):
 		Logger.info("peer with id " + str(id) + " connected.")
 
 func disconnect_peer(id):
+	Logger.info("peer with id " + str(id) + " disconnected.")
 	if game_manager.connected_players.has(id):
 		game_manager.connected_players.erase(id)
 		Logger.info("peer with id " + str(id) + " disconnected.")
@@ -42,7 +43,7 @@ func _on_create_game_button_pressed():
 		return
 
 	game_manager.ip = get_local_ip()
-	game_manager.ip = "192.0.0.1"
+	game_manager.ip = "127.0.0.1"
 	set_ip_label(game_manager.ip)
 
 	game_manager.peer = ENetMultiplayerPeer.new()
@@ -74,6 +75,7 @@ func toggle_buttons_state():
 func _on_stop_server_button_pressed():
 	game_manager.clear_connection_data()
 	toggle_buttons_state()
+	Logger.info("Server turned off")
 
 func get_local_ip() -> String:
 	for ip in IP.get_local_addresses():
